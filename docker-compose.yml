@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=jira
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass12345!
+      - POSTGRES_HOST_AUTH_METHOD=trust     
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/data
+    networks:
+      - jira-network
+      # решил добавить проверку сервиса, т.к. иногда база данных не успевала заработать до запуска веба.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+  
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=jira;Username=postgres;Password=pass12345!;IncludeErrorDetail=true;
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - type: bind
+        source: ./logs
+        target: /logs
+    networks:
+      - jira-network
+    restart: unless-stopped  
+
+volumes:
+  postgres_data:
+
+networks:
+  jira-network:
+    driver: bridge
