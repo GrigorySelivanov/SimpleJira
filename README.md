@@ -58,7 +58,7 @@ TaskController имеет 5 CRUD методов для создания, обн�
 
    ```bash
    git clone https://github.com/GrigorySelivanov/SimpleJira.git
-   cd SimpleJira
+   ./cd SimpleJira
    ```
 
 2. Восстановите зависимости:
@@ -76,24 +76,24 @@ TaskController имеет 5 CRUD методов для создания, обн�
 4. Запустите приложение:
 
    ```bash
-   cd SimpleJira.Web
+   ./cd SimpleJira.Web
    dotnet run
    ```
 
 5. Откройте Swagger UI для тестирования API:
    ```
-   https://localhost:7085/swagger
+   https://localhost:7085/swagger/index.html
    ```
 
 ### Вариант 2: Запуск с использованием Docker
 
-1. Убедитесь, что Docker и Docker Compose установлены на вашей системе.
+1. Убедитесь, что Docker установлен на вашей системе.
 
 2. Склонируйте репозиторий:
 
    ```bash
    git clone https://github.com/GrigorySelivanov/SimpleJira.git
-   cd SimpleJira
+   ./cd SimpleJira
    ```
 
 3. Запустите приложение с помощью Docker Compose:
@@ -105,7 +105,7 @@ TaskController имеет 5 CRUD методов для создания, обн�
 4. Откройте Swagger UI для тестирования API:
 
    ```
-   http://localhost:8080/swagger
+   http://localhost:8080/swagger/index.html
    ```
 
 5. Для остановки контейнера используйте:
