@@ -61,27 +61,32 @@ TaskController имеет 5 CRUD методов для создания, обн�
    git clone https://github.com/GrigorySelivanov/SimpleJira.git
    cd ./SimpleJira
    ```
+2. Обновите строку подключения к БД в appsettings.json:
+   ```bash
+   "ConnectionStrings": {
+	"DefaulConnection": ...
+   ```
 
-2. Восстановите зависимости:
+3. Восстановите зависимости:
 
    ```bash
    dotnet restore
    ```
 
-3. Соберите проект:
+4. Соберите проект:
 
    ```bash
    dotnet build
    ```
 
-4. Запустите приложение:
+5. Запустите приложение:
 
    ```bash
    cd ./SimpleJira.Web
    dotnet run
    ```
 
-5. Откройте Swagger UI для тестирования API:
+6. Откройте Swagger UI для тестирования API:
    ```
    https://localhost:7085/swagger/index.html
    ```
